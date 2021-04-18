@@ -5,7 +5,7 @@ import logo from './thought-bubble.png';
 const Navigation = () => {
     return( 
        
-            <nav className=' main-nav' >
+            <nav className='main-nav' >
                 <img className=' pa2 item logoFormat' alt='Logo' src={logo} width='60' height='60'></img>
                 <div className='divider'></div>
                 <ul className='item'>
