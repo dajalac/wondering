@@ -15,7 +15,7 @@ const Navigation = ({onSigninOut}) => {
                     <li className='f3  underline '>
                          <Link to='/setting'>Setting</Link></li> 
                     <li className=' f3 underline pointer'>
-                        <Link to ='/signin'onClick={()=>onSigninOut(false)}>Sign out</Link> </li>
+                        <Link to ='/signin'>Sign out</Link> </li>
                 </ul>
 
             </nav>

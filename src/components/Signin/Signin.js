@@ -5,18 +5,23 @@ import { Link, useHistory,withRouter  } from 'react-router-dom';
 const Signin = ({onSigninOut})=>{
 
     let history = useHistory();
+    let history2 = useHistory();
+
+    const go= (()=>{
+        history.push("/registration");
+        onSigninOut(true)
+        console.log('gooo')
+
+     })
 
     const onSubmitSignIn =(()=>{
         console.log('hellooo')
          onSigninOut(true)
-        history.push("/");
+        history.replace("/");
         //onSigninOut(true)
      })
 
-     const go= ()=>{
-        console.log('gooo')
-        history.push("/registration");
-     }
+    
 
      
     return (
@@ -60,4 +65,4 @@ const Signin = ({onSigninOut})=>{
       );
 }
 
-export default Signin
+export default withRouter (Signin)

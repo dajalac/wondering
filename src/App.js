@@ -30,12 +30,13 @@ return(
       <Router>
      <div className ='App'>
       <Particles className='particles' params={particlesOptions} />
-      {isSignedIn == false ? <Signin onSigninOut={setIsSignedIn}/>
+      
+      {isSignedIn == false ? (<Signin onSigninOut={setIsSignedIn}/>)
       : (
-        <div>
-            <Navigation onSigninOut={setIsSignedIn}/>
+        <div>  
          <Switch>
             <Route exact path = "/">
+                <Navigation/>
                 <Home/>
             </Route>
             <Route exact path = '/signin'>
