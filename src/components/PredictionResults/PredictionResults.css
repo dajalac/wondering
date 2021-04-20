@@ -1,0 +1,9 @@
+.bounding-box{
+     /*this was copied from clarifai faceDetection by inspecting their website (f12)*/
+    position: absolute;
+    box-shadow: 0 0 0 3px #149df2 inset;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+}
