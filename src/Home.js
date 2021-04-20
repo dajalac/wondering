@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import {useState, userEffect} from 'react';
 import { Link, Switch, Route, Router } from 'react-router-dom';
 import './App.css';
 import Clarifai from 'clarifai';
@@ -15,17 +16,7 @@ const app = new Clarifai.App({
 
 });
 
-const particlesOptions = {
-  particles: {
-    number: {
-      value: 10,
-      density: {
-        enable: true,
-        value_area: 150
-      }
-    }
-  }
-}
+
 const initialState = {
   input: '',
   imageUrl: '',
@@ -42,8 +33,79 @@ const initialState = {
   }
 }
 
+function Home2 (){
+ // states
+ const [input, setInput ] = useState('');
+ const[imageUrl, setImageUrl] = useState('');
+ const [ box, setBox] = useState({});
+ const[boundingBoxArray, setBoundingBoxArray] = useState([]);
 
-class App extends Component {
+const calculatingResultLocation = (data) => {
+  
+  console.log(data)
+
+  for (let i = 0; i < data.outputs[0].data.regions.length; i++) {
+     setBoundingBoxArray(boundingBoxArray.push(data.outputs[0].data.regions[i].region_info.bounding_box))
+
+  }
+
+  //DOM manipulation
+  const image = document.getElementById('inputImage');
+  const width = Number(image.width);
+  const height = Number(image.height);
+
+  let leftCol = [];
+  let topRow = [];
+  let rightCol = [];
+  let bottomRow = [];
+
+  for (let i = 0; i < boundingBoxArray.length; i++) {
+
+    leftCol.push(boundingBoxArray[i].left_col * width);
+    topRow.push(boundingBoxArray[i].top_row * height);
+    rightCol.push(width - (boundingBoxArray[i].right_col * width));
+    bottomRow.push(height - (boundingBoxArray[i].bottom_row * height))
+
+  }
+
+  return {
+    leftCol: leftCol,
+    topRow: topRow,
+    rightCol: rightCol,
+    bottomRow: bottomRow
+  }
+
+}
+
+const displayBox = (box_parameter) => {
+  setBox(box_parameter)
+}
+// user changes figure the URL
+ const onInputChange = (event) => {
+  setInput(event)
+
+}
+
+ const onButtonSubmit = () => {
+  setImageUrl(input)
+  app.models
+    .predict(Clarifai.FACE_DETECT_MODEL, input)
+    .then((response) => displayBox(calculatingResultLocation(response)))
+    .catch(err => console.log(err))
+}
+
+return (
+  <div className='App'>
+    <Greeting />
+    <Rank />
+    <ImageLinkForm inputChange={onInputChange} buttonSubmit={onButtonSubmit} />
+    <PredictionRestults box={box} imageUrl={imageUrl} />
+  </div>
+);
+
+}
+
+class Home extends Component {
   constructor() {
     super();
     this.state = initialState;
@@ -99,6 +161,8 @@ class App extends Component {
     this.setState({ input: event.target.value })
 
   }
+
+ 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
     app.models
@@ -111,7 +175,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Particles className='particles' params={particlesOptions} />
+       
         {/*<Navigation />*/}
         <Greeting />
         <Rank />
@@ -122,4 +186,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
+//export default Home2

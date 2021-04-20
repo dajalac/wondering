@@ -1,8 +1,25 @@
 import React,{userState, userEffect} from 'react';
+import { Link, useHistory,withRouter  } from 'react-router-dom';
 
-const Signin = ()=>{
+
+const Signin = ({onSigninOut})=>{
+
+    let history = useHistory();
+
+    const onSubmitSignIn =(()=>{
+        console.log('hellooo')
+         onSigninOut(true)
+        history.push("/");
+        //onSigninOut(true)
+     })
+
+     const go= ()=>{
+        console.log('gooo')
+        history.push("/registration");
+     }
+
+     
     return (
-    
           <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
               <main className="pa4 black-80">
                   <div className="measure">
@@ -14,7 +31,7 @@ const Signin = ()=>{
                                type="email" 
                                name="email-address"
                                 id="email-address"
-                                onChange = {} />
+                                onChange = {onSubmitSignIn} />
                           </div>
                           <div className="mv3">
                               <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
@@ -22,18 +39,18 @@ const Signin = ()=>{
                               type="password" 
                               name="password" 
                               id="password" 
-                              onChange = {}/>
+                              onChange = {onSubmitSignIn}/>
                           </div>
                       </fieldset>
                       <div className="">
                           <input 
                           // I have created an arrow function so the function is called just when onClick not when the app render
-                          onClick ={}
+                          onClick = {onSubmitSignIn}
                           className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                           type="submit" value="Sign in" />
                       </div>
                       <div className="lh-copy mt3">
-                          <p onClick ={}  
+                          <p onClick ={go}  
                           className="f6 link dim black db pointer">Register</p>
                       </div>
                   </div>
