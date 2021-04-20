@@ -48,39 +48,25 @@ class App extends Component {
     this.state = initialState; 
   }
 
-  // states
-  /*
-  const [input, setInput] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const[box, setBox] = useState({});
-  //const [faceRegion, setFaceRegion] = useState([]);
-  const [boundingBoxArray, setBoundingBoxArray] = useState([])
-  */
-
   calculatingResultLocation =(data) =>{ 
+    console.log(data)
     const {boundingBoxArray} = this.state;
-    //data.outputs[0].data.regions.map((region)=>faceRegion.push(region))
 
     for(let i=0; i< data.outputs[0].data.regions.length; i++){
-       //boundingBoxArray.push(faceRegion[i].region_info.bounding_box)
       this.state.boundingBoxArray.push(data.outputs[0].data.regions[i].region_info.bounding_box)
+    
     }
-
-    //console.log('region',faceRegion);
-    //console.log('box',boundingBoxArray)
 
     //DOM manipulation
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
     const height = Number(image.height);
 
-   
     let leftCol= [];
     let topRow=[];
     let rightCol= [];
     let bottomRow= [];
    
-
     for(let i=0; i<boundingBoxArray.length;i++){
     
         leftCol.push(boundingBoxArray[i].left_col * width);
@@ -103,21 +89,20 @@ class App extends Component {
 
     displayBox =(box_parameter) =>{
       this.setState({box:box_parameter})
-      //setBox(box_parameter)
-      //console.log('box state',boxx);
+     
     }
   
 
   // user changes the URL
    onInputChange =(event) =>{
      this.setState({input:event.target.value})
-    //setInput (event.target.value);
+   
   }
   onButtonSubmit=()=>{
     this.setState({imageUrl: this.state.input});
     app.models
         .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-        .then(response=> this.displayBox(this.calculatingResultLocation(response)))
+        .then((response)=>this.displayBox(this.calculatingResultLocation(response)))
         .catch(err => console.log(err))
   }
 
@@ -130,7 +115,7 @@ class App extends Component {
       <Greeting/>
       <Rank/>
       <ImageLinkForm inputChange ={this.onInputChange} buttonSubmit ={this.onButtonSubmit}/>
-      <PredictionRestults box ={this.state.box} imageUrl ={this.state.imageUrl}/>
+      <PredictionRestults box ={this.state.box} imageUrl ={this.state.imageUrl} />
     </div>
   );
   }
