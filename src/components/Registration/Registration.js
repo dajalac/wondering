@@ -1,5 +1,6 @@
 import React,{userState, userEffect} from 'react';
 import { Link, useHistory,withRouter  } from 'react-router-dom';
+import './Registration.css'
 
 const Registration =()=>{
     
@@ -11,11 +12,15 @@ const Registration =()=>{
         
      })
 
+     const goSignin =(()=>{
+         history.push('/signin')
+     })
+
   
 
 
     return(
-        <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+        <article className="background  br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
             <div className="measure">
                 <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -52,6 +57,10 @@ const Registration =()=>{
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                         type="submit" value="Register" />
                 </div>
+                <div className="lh-copy mt3">
+                          <p onClick ={goSignin} 
+                          className="f6 link dim black db pointer">Already have an account?</p>
+                      </div>
             </div>
         </main>
     </article>

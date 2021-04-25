@@ -1,5 +1,6 @@
 import React,{userState, userEffect} from 'react';
 import { Link, useHistory,withRouter  } from 'react-router-dom';
+import './Setting.css'
 
 const Setting =()=>{
     
@@ -15,15 +16,59 @@ const Setting =()=>{
 
 
     return(
-        <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-        <main className="pa4 black-80">
-           <div>
-               <label>Change name</label>
-               
-           </div>
-        </main>
-    </article>
+       
+       <div className=" background  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
+          <div className=" container pa4">
+              <label className=''>Name</label>
+              <input className='' type='text'></input>
+              <button className=' grow'>Save</button>
+             
+              
+             
+
+              <lable className='margingTop'>Reset face counting?</lable>
+              <button className='margingTop  grow'>Yes</button>
+         
+          
+              <lable className='margingTop'>Change password?</lable>
+              <button className='margingTop grow'>Yes</button>
+        </div>   
+       </div>
+    
     )
 }
 
 export default withRouter(Setting)
+
+/*
+***************************
+ <div className=" form  shadow-5 center">
+          
+          <div className='align center pa2'>
+              <label className='text w-10 '>Name</label>
+              <input className='w-50' type='text'></input>
+              <button className=''>Save</button>
+          </div>  
+          <div className=' align center  pa2 '>
+              <lable className='w-70 text'>Reset face counting?</lable>
+              <button>Yes</button>
+          </div>
+          <div className='align center pa2'>
+              <lable className='w-70 text'>Change password?</lable>
+              <button className=' w-15 grow'>Yes</button>
+          </div>    
+          
+       </div>
+*********************
+      <div className="br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
+           <div className="form pa4 black-80">
+               <div>
+               <label >Name</label>
+               </div>
+               <div className = 'center pa4 br3'>
+              <input className='pa2 w-70 fa4 center' type ='text' ></input>
+              <button className='center w-30 grow f4 link ph3 pv2 dib white bg-green' > Save</button>
+             </div>  
+           </div>
+    </div>
+*/

@@ -1,0 +1,65 @@
+.background {
+
+    background: rgba(226, 211, 211, 0.2); 
+    font-family: 'Courier New', Courier, monospace;
+}
+.container{
+    display: grid;
+    grid-template-columns: .2fr 0.5em .2fr ;
+    justify-items:start;
+    gap: 0.5em;
+    
+}
+
+.margingTop{
+    margin-top: 3em;
+}
+
+label{
+    grid-column: 1;
+
+}
+input{
+    grid-column: 1;
+}
+button {
+    grid-column: 3;
+    width:60px;
+    text-align:center;
+    line-height:1.1em;
+    font-size:1.1em;   
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+br{
+    grid-column: 1;
+}
+
+
+
+
+
+
+.formf{
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    width: 60%;
+
+}
+
+.alignf{
+    width: 80%;
+    text-align: left;
+}
+
+.textf{
+   text-align: left;
+  
+}
+
+
+.button{
+    width:fit-content;
+}

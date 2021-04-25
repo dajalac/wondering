@@ -95,7 +95,7 @@ const displayBox = (box_parameter) => {
 }
 
 return (
-  <div className='App'>
+  <div className='App center'>
     <Greeting />
     <Rank />
     <ImageLinkForm inputChange={onInputChange} buttonSubmit={onButtonSubmit} />
