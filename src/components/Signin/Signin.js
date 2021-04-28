@@ -1,14 +1,24 @@
-import React,{userState, userEffect} from 'react';
+import React,{useState,useEffect} from 'react';
 import { Link, useHistory,withRouter  } from 'react-router-dom';
 import './Signin.css'
 
 
 const Signin = ({onSigninOut})=>{
-
+     
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
     let history = useHistory();
-    let history2 = useHistory();
 
-    const go= (()=>{
+    const onEmailChange =((event)=>{
+         setEmail(event.target.value);
+    })
+
+    const onPasswordChange =((event)=>{
+       setPassword(event.target.value)
+    })
+    
+    const goToRegistration= (()=>{
         history.push("/registration");
         onSigninOut(true)
         console.log('gooo')
@@ -37,7 +47,7 @@ const Signin = ({onSigninOut})=>{
                                type="email" 
                                name="email-address"
                                 id="email-address"
-                                onChange = {onSubmitSignIn} />
+                                onChange = {onEmailChange} />
                           </div>
                           <div className="mv3">
                               <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
@@ -45,7 +55,7 @@ const Signin = ({onSigninOut})=>{
                               type="password" 
                               name="password" 
                               id="password" 
-                              onChange = {onSubmitSignIn}/>
+                              onChange = {onPasswordChange}/>
                           </div>
                       </fieldset>
                       <div className="">
@@ -56,7 +66,7 @@ const Signin = ({onSigninOut})=>{
                           type="submit" value="Sign in" />
                       </div>
                       <div className="lh-copy mt3">
-                          <p onClick ={go}  
+                          <p onClick ={goToRegistration}  
                           className="f6 link dim black db pointer">Register</p>
                       </div>
                   </div>

@@ -39,6 +39,12 @@ class Home extends Component {
     this.state = initialState;
   }
 
+  componentDidMount(){
+    fetch('http://localhost:3000/') //localhost because it is my computer
+      .then(response => response.json())
+      .then(console.log)
+  }
+
   calculatingResultLocation = (data) => {
     console.log(data)
     const { boundingBoxArray } = this.state;
@@ -115,4 +121,4 @@ class Home extends Component {
 }
 
 export default Home;
-//export default Home2
+
