@@ -43,10 +43,10 @@ return(
                 <Home user={user}/>
             </Route>
             <Route exact path = '/signin'>
-                <Signin onSigninOut={setIsSignedIn}/>
+                <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
             </Route>
             <Route exact path = '/registration'>
-                <Registration/>
+                <Registration setUser ={setUser}/>
             </Route>
             <Route exact path = "/setting">
                 <Navigation/>
