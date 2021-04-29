@@ -3,7 +3,7 @@ import { Link, useHistory,withRouter  } from 'react-router-dom';
 import './Signin.css'
 
 
-const Signin = ({onSigninOut})=>{
+const Signin = ({onSigninOut, setUser})=>{
      
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,15 +21,37 @@ const Signin = ({onSigninOut})=>{
     const goToRegistration= (()=>{
         history.push("/registration");
         onSigninOut(true)
-        console.log('gooo')
-
+        
      })
 
     const onSubmitSignIn =(()=>{
-        console.log('hellooo')
-         onSigninOut(true)
-        history.replace("/");
-        //onSigninOut(true)
+        // send password and email to server
+        fetch('http://localhost:3000/signin', {
+            method:'post',
+            headers:{'content-Type':'application/json'},
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        .then(response => response.json())
+        .then(user =>{
+            if (user.id){
+                loadUser(user);
+                onSigninOut(true);
+                history.replace("/");
+            }
+        })
+     })
+
+     const loadUser =((user)=>{
+         setUser({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            entries: user.entries,
+            joined: user.joined
+         })
      })
 
     

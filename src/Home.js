@@ -24,25 +24,12 @@ const initialState = {
   route: 'signin',
   isSignedIn: false,
   boundingBoxArray: [],
-  user: {
-    id: '',
-    name: '',
-    email: '',
-    entries: 0,
-    joined: ' '
-  }
 }
 
-class Home extends Component {
-  constructor() {
-    super();
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = initialState;
-  }
-
-  componentDidMount(){
-    fetch('http://localhost:3000/') //localhost because it is my computer
-      .then(response => response.json())
-      .then(console.log)
   }
 
   calculatingResultLocation = (data) => {
@@ -107,6 +94,7 @@ class Home extends Component {
 
 
   render() {
+    console.log(this.props.user.name)
     return (
       <div className='App'>
        

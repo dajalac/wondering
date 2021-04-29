@@ -24,6 +24,8 @@ const particlesOptions = {
 function App(){
 
 const [isSignedIn, setIsSignedIn] = useState(false );
+const [user, setUser] = useState({   id: '', name: '', email: '', numberoFfaces: 0, joined: ' ' })
+
 
 
 return(
@@ -32,13 +34,13 @@ return(
      <div className ='App'>
       <Particles className='particles' params={particlesOptions} />
       
-      {isSignedIn == false ? (<Signin onSigninOut={setIsSignedIn}/>)
+      {isSignedIn == false ? (<Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>)
       : (
         <div>  
          <Switch>
             <Route exact path = "/">
                 <Navigation/>
-                <Home/>
+                <Home user={user}/>
             </Route>
             <Route exact path = '/signin'>
                 <Signin onSigninOut={setIsSignedIn}/>
