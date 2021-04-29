@@ -86,15 +86,42 @@ class Home extends React.Component {
  
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+    .then (response => response.json())
+    .then(response=> {
+      if (response) {
+        fetch('http://localhost:3000/image', {
+          method: 'put',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: this.props.user.id
+          })
+        })
+        .then (response => response.json())
+        .then(count => {
+           
+        })
+        .catch( console.log)
+      }
+      this.displayBox(this.calculatingResultLocation(response))
+    })
+    .catch(err => console.log(err))
+
+    /*
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then((response) => this.displayBox(this.calculatingResultLocation(response)))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err))*/
   }
 
 
   render() {
-    console.log(this.props.user.name)
     return (
       <div className='App'>
        
