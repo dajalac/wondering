@@ -33,13 +33,13 @@ class Home extends React.Component {
   }
 
   calculatingResultLocation = (data) => {
-    console.log(data)
     const { boundingBoxArray } = this.state;
 
     for (let i = 0; i < data.outputs[0].data.regions.length; i++) {
       this.state.boundingBoxArray.push(data.outputs[0].data.regions[i].region_info.bounding_box)
 
     }
+    console.log('length ',this.state.boundingBoxArray.length)
 
     //DOM manipulation
     const image = document.getElementById('inputImage');
@@ -85,6 +85,7 @@ class Home extends React.Component {
 
  
   onButtonSubmit = () => {
+    this.setState({boundingBoxArray: []})
     this.setState({ imageUrl: this.state.input });
     fetch('http://localhost:3000/imageurl', {
       method: 'post',
@@ -96,22 +97,27 @@ class Home extends React.Component {
     .then (response => response.json())
     .then(response=> {
       if (response) {
+        this.displayBox(this.calculatingResultLocation(response))
+        
         fetch('http://localhost:3000/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            id: this.props.user.id
+            id: this.props.user.id,
+            numberOfFace: this.state.boundingBoxArray
           })
         })
         .then (response => response.json())
         .then(count => {
            
         })
-        .catch( console.log)
+        //.catch( console.log)
       }
-      this.displayBox(this.calculatingResultLocation(response))
+      //this.displayBox(this.calculatingResultLocation(response))
     })
     .catch(err => console.log(err))
+
+    
 
     /*
     app.models
