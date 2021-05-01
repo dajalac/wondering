@@ -49,7 +49,8 @@ const Signin = ({onSigninOut, setUser})=>{
             id: user.id,
             name: user.name,
             email: user.email,
-            entries: user.entries,
+            number_faces: user.number_faces,
+            ranking:user.ranking,
             joined: user.joined
          })
      })

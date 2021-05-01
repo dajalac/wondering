@@ -20,9 +20,7 @@ const app = new Clarifai.App({
 const initialState = {
   input: '',
   imageUrl: '',
-  box: {},
-  route: 'signin',
-  isSignedIn: false,
+  box: {}, 
   boundingBoxArray: [],
 }
 
@@ -98,7 +96,7 @@ class Home extends React.Component {
     .then(response=> {
       if (response) {
         this.displayBox(this.calculatingResultLocation(response))
-        
+
         fetch('http://localhost:3000/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
@@ -108,7 +106,9 @@ class Home extends React.Component {
           })
         })
         .then (response => response.json())
-        .then(count => {
+        .then(data => {
+          this.props.setUser(Object.assign(this.props.user,{ranking:data[0]}))
+          this.props.setUser(Object.assign(this.props.user,{number_faces:data[1]}))
            
         })
         //.catch( console.log)
@@ -128,6 +128,8 @@ class Home extends React.Component {
 
 
   render() {
+    console.log('ranking', this.props.user.ranking)
+    console.log('faces', this.props.user.number_faces)
     return (
       <div className='App'>
        
