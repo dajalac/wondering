@@ -113,29 +113,21 @@ class Home extends React.Component {
         })
         //.catch( console.log)
       }
-      //this.displayBox(this.calculatingResultLocation(response))
+     
     })
     .catch(err => console.log(err))
 
-    
-
-    /*
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then((response) => this.displayBox(this.calculatingResultLocation(response)))
-      .catch(err => console.log(err))*/
   }
 
 
   render() {
-    console.log('ranking', this.props.user.ranking)
-    console.log('faces', this.props.user.number_faces)
+
     return (
       <div className='App'>
        
         {/*<Navigation />*/}
-        <Greeting />
-        <Rank />
+        <Greeting user ={this.props.user}/>
+        <Rank user ={this.props.user}/>
         <ImageLinkForm inputChange={this.onInputChange} buttonSubmit={this.onButtonSubmit} />
         <PredictionRestults box={this.state.box} imageUrl={this.state.imageUrl} />
       </div>

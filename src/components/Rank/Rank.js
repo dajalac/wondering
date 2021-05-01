@@ -1,11 +1,17 @@
 import React from 'react';
 
-const Rank = ()=>{
+const Rank = ({user})=>{
+    
+    let ranking = 0;
+    if(user.ranking){
+        ranking = user.ranking
+    }
+
     return(
         <div className='center f3'>
-            {`Ranking: 0`}
+            {`Ranking: ${ranking}`}
             {' '}
-            {`Points: 0`}
+            {`Points: ${user.number_faces}`}
         </div>
 
     )

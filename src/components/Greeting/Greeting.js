@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Greeting = () =>{
+const Greeting = ({user}) =>{
     return(
         <div className ='center f1'>
-            <p>{'Hello!'}</p>
+            <p>{`Hello, ${user.name}!`}</p>
         </div>
     )
 }
