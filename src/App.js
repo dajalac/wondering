@@ -40,7 +40,7 @@ return(
          <Switch>
             <Route exact path = "/">
                 <Navigation/>
-                <Home user={user} setUser= {setUser}/>
+                <Home user={user}/>
             </Route>
             <Route exact path = '/signin'>
                 <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>

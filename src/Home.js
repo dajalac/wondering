@@ -1,11 +1,8 @@
 
 import React, { Component } from 'react';
-import {useState, userEffect} from 'react';
-import { Link, Switch, Route, Router } from 'react-router-dom';
+import {useState, useEffect} from 'react';
 import './App.css';
 import Clarifai from 'clarifai';
-import Particles from 'react-particles-js';
-import Navigation from './components/Navigation/Navigation';
 import Greeting from './components/Greeting/Greeting';
 import Rank from './components/Rank/Rank'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkFrom'
@@ -29,6 +26,7 @@ class Home extends React.Component {
     super(props);
     this.state = initialState;
   }
+
 
   calculatingResultLocation = (data) => {
     const { boundingBoxArray } = this.state;
@@ -96,24 +94,23 @@ class Home extends React.Component {
     .then(response=> {
       if (response) {
         this.displayBox(this.calculatingResultLocation(response))
-
         fetch('http://localhost:3000/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
             id: this.props.user.id,
-            numberOfFace: this.state.boundingBoxArray
+            numberOfFace:this.state.boundingBoxArray.length
           })
         })
         .then (response => response.json())
         .then(data => {
-          this.props.setUser(Object.assign(this.props.user,{ranking:data[0]}))
-          this.props.setUser(Object.assign(this.props.user,{number_faces:data[1]}))
-           
+          this.setState(Object.assign(this.props.user,{ranking:data[0]}))
+          this.setState(Object.assign(this.props.user,{number_faces:data[1]}))
+         
         })
-        //.catch( console.log)
+        .catch( console.log)
       }
-     
+      
     })
     .catch(err => console.log(err))
 
@@ -121,13 +118,11 @@ class Home extends React.Component {
 
 
   render() {
-
+    
     return (
       <div className='App'>
-       
-        {/*<Navigation />*/}
         <Greeting user ={this.props.user}/>
-        <Rank user ={this.props.user}/>
+        <Rank ranking ={this.props.user.ranking} points ={this.props.user.number_faces} />
         <ImageLinkForm inputChange={this.onInputChange} buttonSubmit={this.onButtonSubmit} />
         <PredictionRestults box={this.state.box} imageUrl={this.state.imageUrl} />
       </div>
