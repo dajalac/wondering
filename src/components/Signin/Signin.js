@@ -24,6 +24,11 @@ const Signin = ({onSigninOut, setUser})=>{
         
      })
 
+     const goForgotPassword =(()=>{
+         history.push("/forgotPassword");
+         onSigninOut(true);
+     })
+
     const onSubmitSignIn =(()=>{
         // send password and email to server
         fetch('http://localhost:3000/signin', {
@@ -88,10 +93,14 @@ const Signin = ({onSigninOut, setUser})=>{
                           className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                           type="submit" value="Sign in" />
                       </div>
-                      <div className="lh-copy mt3">
+                      <div className="mt3 center">
                           <p onClick ={goToRegistration}  
                           className="f6 link dim black db pointer">Register</p>
                       </div>
+                      <div className="center">
+                         <p onClick={goForgotPassword}
+                          className="f6 link dim black db pointer">Forgot password?</p>
+                    </div>
                   </div>
               </main>
           </article>

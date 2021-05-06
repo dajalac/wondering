@@ -15,14 +15,14 @@
     margin-top: 3em;
 }
 
-label{
+.labelForm{
     grid-column: 1;
 
 }
-input{
+.inputForm{
     grid-column: 1;
 }
-button {
+.btn {
     grid-column: 3;
     width:60px;
     text-align:center;
@@ -36,30 +36,3 @@ br{
     grid-column: 1;
 }
 
-
-
-
-
-
-.formf{
-    display: inline-block;
-    text-align: left;
-    position: relative;
-    width: 60%;
-
-}
-
-.alignf{
-    width: 80%;
-    text-align: left;
-}
-
-.textf{
-   text-align: left;
-  
-}
-
-
-.button{
-    width:fit-content;
-}

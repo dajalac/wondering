@@ -8,6 +8,7 @@ import Signin from './components/Signin/Signin';
 import Home from './Home'
 import Registration from './components/Registration/Registration';
 import Setting from './components/Setting/Setting';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 const particlesOptions = {
     particles: {
@@ -51,6 +52,9 @@ return(
             <Route exact path = "/setting">
                 <Navigation/>
                 <Setting/>
+            </Route>
+            <Route exact path = "/forgotPassword">
+              <ForgotPassword />
             </Route>
          </Switch>
          </div>)

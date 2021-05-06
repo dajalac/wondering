@@ -19,19 +19,16 @@ const Setting =()=>{
        
        <div className=" background  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
           <div className=" container pa4">
-              <label className=''>Name</label>
-              <input className='' type='text'></input>
-              <button className=' grow'>Save</button>
+              <label className='labelForm'>Name</label>
+              <input className='inputForm' type='text'></input>
+              <button className='btn grow'>Save</button>
              
-              
-             
-
-              <lable className='margingTop'>Reset face counting?</lable>
-              <button className='margingTop  grow'>Yes</button>
+              <lable className='margingTop labelForm'>Reset face counting?</lable>
+              <button className='btn margingTop  grow'>Yes</button>
          
           
-              <lable className='margingTop'>Change password?</lable>
-              <button className='margingTop grow'>Yes</button>
+              <lable className='margingTop labelForm'>Change password?</lable>
+              <button className='btn margingTop grow'>Yes</button>
         </div>   
        </div>
     
