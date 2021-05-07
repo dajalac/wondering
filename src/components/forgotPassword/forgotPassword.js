@@ -12,7 +12,7 @@ const ForgotPassword = ()=>{
     })
 
     return(
-        <form className=" background  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
+        <form className=" bg  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
         <div className=" pa4">
             <label className=''> Email address </label>
             <input className='' type='text'></input>
