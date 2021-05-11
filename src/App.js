@@ -9,6 +9,7 @@ import Home from './Home'
 import Registration from './components/Registration/Registration';
 import Setting from './components/Setting/Setting';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 const particlesOptions = {
     particles: {
@@ -30,20 +31,38 @@ const [user, setUser] = useState({   id: '', name: '', email: '', number_faces: 
 
 
 return(
-
       <Router>
      <div className ='App'>
       <Particles className='particles' params={particlesOptions} />
       
-      {isSignedIn == false ? (<Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>)
+      {isSignedIn == false ? (
+        <div>
+          <Switch>
+           <Route exact path = "/">
+              <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
+            </Route>
+            <Route exact path = "/resetPassword/:id/:token">
+              <ResetPassword/>
+            </Route>
+            <Route exact path = '/registration'>
+                <Registration setUser ={setUser}/>
+            </Route>
+            <Route>
+              <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
+            </Route>
+          </Switch>
+            
+        </div>
+     // <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
+      )
       : (
         <div>  
          <Switch>
-            <Route exact path = "/">
+            <Route exact path = "/home">
                 <Navigation/>
                 <Home user={user}/>
             </Route>
-            <Route exact path = '/signin'>
+            <Route exact path = '/'>
                 <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
             </Route>
             <Route exact path = '/registration'>
@@ -55,6 +74,9 @@ return(
             </Route>
             <Route exact path = "/forgotPassword">
               <ForgotPassword />
+            </Route>
+            <Route exact path = "/resetPassword/:id/:token">
+              <ResetPassword/>
             </Route>
          </Switch>
          </div>)

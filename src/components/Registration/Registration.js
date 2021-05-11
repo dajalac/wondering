@@ -39,7 +39,7 @@ const Registration = ({ setUser }) => {
             .then(user => {
                 if (user.id) {
                     loadUser(user);
-                    history.push("/");
+                    history.push("/home");
                 }
             })
     })

@@ -11,11 +11,11 @@ const Navigation = ({onSigninOut}) => {
                 <div className='divider'></div>
                 <ul className='item'>
                 <li className='f4  '>
-                         <Link to='/'>Home</Link></li>
+                         <Link to='/home'>Home</Link></li>
                     <li className='f4   '>
                          <Link to='/setting'>Setting</Link></li> 
                     <li className=' f4 pointer'>
-                        <Link to ='/signin'>Sign out</Link> </li>
+                        <Link to ='/'>Sign out</Link> </li>
                 </ul>
 
             </nav>

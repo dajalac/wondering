@@ -44,7 +44,7 @@ const Signin = ({onSigninOut, setUser})=>{
             if (user.id){
                 loadUser(user);
                 onSigninOut(true);
-                history.replace("/");
+                history.replace("/home");
             }
         })
      })
