@@ -41,10 +41,9 @@ return(
            <Route exact path = "/">
               <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
             </Route>
-            <Route exact path = "/resetPassword/:id/:token">
-              <ResetPassword/>
-            </Route>
-            <Route exact path = '/registration'>
+            <Route exact path = "/resetPassword/:id/:token" component ={ResetPassword}/>
+            <Route exact path = "/forgotPassword" component ={ForgotPassword } />
+            <Route exact path = '/registration' >
                 <Registration setUser ={setUser}/>
             </Route>
             <Route>

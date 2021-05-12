@@ -3,16 +3,34 @@ import {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 
 
-const ResetPassword = ()=>{
+const ResetPassword = (props)=>{
 
     const [password, setPassword] = useState ('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(false);
 
+    const {id, token} = props.match.params;
+
+    
+
+
     let history = useHistory();
 
     useEffect(()=>{
-        // GET api
+        console.log('inside useeffect')
+        fetch(`http://localhost:3000/resetPassword/${id}/${token}`)
+        .then(response => response.json())
+        .then(feedBack =>{
+            console.log("kkk",feedBack)
+            if (feedBack){
+               setError(false)
+               console.log('true')
+            }else{
+                setError(true)
+                console.log('false')
+            }
+        })
+        
     }, [])
 
     const goSignin =(()=>{
