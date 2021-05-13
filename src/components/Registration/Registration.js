@@ -14,19 +14,19 @@ const Registration = ({ setUser }) => {
 
     const onEmailChange =((event)=>{
         setEmail(event.target.value);
-   })
+   });
 
    const onPasswordChange =((event)=>{
       setPassword(event.target.value);
-   })
+   });
 
    const onNameChange = ((event)=>{
        setName(event.target.value);
-   })
+   });
 
     const goSignin = (() => {
         history.push('/')
-    })
+    });
 
     const onSubmitRegistration = (() => {
         /*
@@ -73,7 +73,7 @@ const Registration = ({ setUser }) => {
                     }
                 }
             })
-    })
+    });
 
     const loadUser = ((user) => {
         setUser({
@@ -84,10 +84,10 @@ const Registration = ({ setUser }) => {
             ranking:user.ranking,
             joined: user.joined
         })
-    })
+    });
 
     return (
-        <article className="background  br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+        <article className="reg_bg  br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
             <main className="pa4 black-80">
                 <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">

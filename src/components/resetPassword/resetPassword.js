@@ -1,6 +1,8 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
+import '../Setting/Setting.css'
+
 
 
 const ResetPassword = (props)=>{
@@ -103,29 +105,30 @@ const ResetPassword = (props)=>{
     }else{
     return(
         <article className=" bg  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
-        <div className=" pa4">
-            <label className=''> New password  </label>
-            <input className='' type='text' onChange={onPasswordChange}></input>
-            <label className=''> renter password  </label>
-            <input className='' type='text'onChange={onPassword2Change}></input>
+        <div className="container pa4">
+            <label className='labelForm'> New password  </label>
+            <input className='inputForm' type='password' onChange={onPasswordChange}></input>
+            <label className='labelForm'> renter password  </label>
+            <input className='inputForm' type='password'onChange={onPassword2Change}></input>
             
-            <button onClick ={onReset} className=''>Submit</button>
+            <button onClick ={onReset} className='btn grow link  dib white bg-green'>Submit</button>
+          
          <div>   
         {updated && (
            
-               <p className="pForm ">Password updated with sucess! Go to Sign in</p> 
+               <p className="p_Form ">Password updated with sucess! Go to Sign in</p> 
             
         )}
          {updateError && (
             
-               <p className="pForm ">{errorMsg}</p> 
+               <p className="p_Form ">{errorMsg}</p> 
             
         )}
         </div>
-        <div>
+        
         <p onClick={goSignin}
-           className="pForm f6 link dim black db pointer"> go to Sign in </p>
-        </div>
+           className="p_Form f6 link dim black db pointer"> Sign in </p>
+        
         </div>
      </article>
     )

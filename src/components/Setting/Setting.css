@@ -1,6 +1,6 @@
 .background {
 
-    background: rgba(226, 211, 211, 0.2); 
+    background-color:white; 
     font-family: 'Courier New', Courier, monospace;
 }
 .container{
@@ -24,15 +24,11 @@
 }
 .btn {
     grid-column: 3;
-    width:60px;
+    display: inline-block;
     text-align:center;
-    line-height:1.1em;
-    font-size:1.1em;   
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
 }
-
-br{
+.p_Form{
     grid-column: 1;
 }
+
 

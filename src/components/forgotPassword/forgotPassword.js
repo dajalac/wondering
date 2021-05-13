@@ -53,7 +53,7 @@ const ForgotPassword = ()=>{
         <div className=" pa4">
             <label className=''> Email address </label>
             <input className='' type='text' onClick={onEmailChange}></input>
-            <button className=' grow' onClick={forgotBtn}>reset</button>
+            <button className=' grow link  dib white bg-green' onClick={forgotBtn}>reset</button>
          {errorMsg && (
            <div>
                <p className="pForm">The email address is invalid. Please try again or register for a new account</p>
@@ -68,7 +68,7 @@ const ForgotPassword = ()=>{
         
         <div>
         <p onClick={goSignin}
-           className="pForm f6 link dim black db pointer">Cancel</p>
+           className="pForm f6 link dim black db pointer gray">Cancel</p>
         </div>
         </div>
      </article>

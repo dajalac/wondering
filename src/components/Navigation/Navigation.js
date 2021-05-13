@@ -1,6 +1,6 @@
 import React from 'react'; 
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from './thought-bubble.png';
 
 const Navigation = ({onSigninOut}) => {
@@ -11,9 +11,9 @@ const Navigation = ({onSigninOut}) => {
                 <div className='divider'></div>
                 <ul className='item'>
                 <li className='f4  '>
-                         <Link to='/home'>Home</Link></li>
+                         <NavLink to='/home'activeClassName="active">Home</NavLink></li>
                     <li className='f4   '>
-                         <Link to='/setting'>Setting</Link></li> 
+                         <NavLink to='/setting' activeClassName="active">Setting</NavLink></li> 
                     <li className=' f4 pointer'>
                         <Link to ='/'>Sign out</Link> </li>
                 </ul>
