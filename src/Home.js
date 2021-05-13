@@ -74,7 +74,7 @@ class Home extends React.Component {
   onButtonSubmit = () => {
     this.setState({boundingBoxArray: []})
     this.setState({ imageUrl: this.state.input });
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://enigmatic-beyond-79003.herokuapp.com/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -85,7 +85,7 @@ class Home extends React.Component {
     .then(response=> {
       if (response) {
         this.displayBox(this.calculatingResultLocation(response))
-        fetch('http://localhost:3000/image', {
+        fetch('https://enigmatic-beyond-79003.herokuapp.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({

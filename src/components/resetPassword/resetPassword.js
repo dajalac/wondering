@@ -20,7 +20,7 @@ const ResetPassword = (props)=>{
     let history = useHistory();
 
     useEffect(()=>{ 
-       fetch(`http://localhost:3000/resetPassword/${id}/${token}`)
+       fetch(`https://enigmatic-beyond-79003.herokuapp.com/resetPassword/${id}/${token}`)
         .then(response => response.json())
         .then(feedBack =>{
             if (feedBack){
@@ -61,7 +61,7 @@ const ResetPassword = (props)=>{
             setErrorMsg('Password cannot be empty.Try again')
         }else {
             setErrorMsg('')
-        fetch(`http://localhost:3000/updatePassword`, {
+        fetch(`https://enigmatic-beyond-79003.herokuapp.com/updatePassword`, {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({

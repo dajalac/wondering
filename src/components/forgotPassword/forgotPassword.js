@@ -28,7 +28,7 @@ const ForgotPassword = ()=>{
         console.log('email',email)
         setErrorMsg(false)
         setServerResponse(false)
-        fetch('http://localhost:3000/forgotPassword', {
+        fetch('https://enigmatic-beyond-79003.herokuapp.com/forgotPassword', {
             method:'post',
             headers:{'content-Type':'application/json'},
             body: JSON.stringify({

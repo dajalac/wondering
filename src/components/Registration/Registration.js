@@ -37,7 +37,7 @@ const Registration = ({ setUser }) => {
         setErrorName(false);
         setEmailAlreadyExists (false);
     
-        fetch('http://localhost:3000/register', {
+        fetch('https://enigmatic-beyond-79003.herokuapp.com/register', {
             method: 'post',
             headers: { 'content-Type': 'application/json' },
             body: JSON.stringify({

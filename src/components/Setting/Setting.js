@@ -20,7 +20,7 @@ const Setting =({user})=>{
     });
 
    const onEditName =(()=>{
-    fetch('http://localhost:3000/updateName', {
+    fetch('https://enigmatic-beyond-79003.herokuapp.com/updateName', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -42,7 +42,7 @@ const Setting =({user})=>{
 
    const onDeleteUser =(()=>{
         if(window.confirm('Are you sure you want to delete account?')){
-        fetch('http://localhost:3000/deleteUser', {
+        fetch('https://enigmatic-beyond-79003.herokuapp.com/deleteUser', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
