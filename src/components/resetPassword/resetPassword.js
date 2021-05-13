@@ -32,7 +32,7 @@ const ResetPassword = (props)=>{
             }
         })
           
-    }, [])
+    }, [id, token])
 
     const goSignin =(()=>{
         history.push('/signin')

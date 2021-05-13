@@ -1,5 +1,5 @@
-import React, { userState, userEffect, useState } from 'react';
-import { Link, useHistory, withRouter } from 'react-router-dom';
+import React, {useState ,useEffect} from 'react';
+import {useHistory, withRouter } from 'react-router-dom';
 import './Registration.css'
 
 const Registration = ({ setUser }) => {
@@ -48,7 +48,7 @@ const Registration = ({ setUser }) => {
         })
             .then(response => response.json())
             .then(res => {
-                if (res .id) {
+                if (res.id) {
                     loadUser(res );
                     history.push("/home");
                 }else{

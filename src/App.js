@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import {useState, useEffect} from 'react';
-import { Link, Switch, Route, BrowserRouter as Router, withRouter } from 'react-router-dom';
+import React from 'react';
+import {useState,useEffect} from 'react';
+import { Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 import './App.css';
 import Particles from 'react-particles-js';
 import Navigation from './components/Navigation/Navigation';
@@ -10,6 +10,7 @@ import Registration from './components/Registration/Registration';
 import Setting from './components/Setting/Setting';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+
 
 const particlesOptions = {
     particles: {
@@ -35,14 +36,16 @@ return(
      <div className ='App'>
       <Particles className='particles' params={particlesOptions} />
       
-      {isSignedIn == false ? (
+      {isSignedIn === false ? (
         <div>
           <Switch>
            <Route exact path = "/">
               <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
             </Route>
             <Route exact path = "/resetPassword/:id/:token" component ={ResetPassword}/>
-            <Route exact path = "/forgotPassword" component ={ForgotPassword } />
+            <Route exact path = "/forgotPassword">
+              <ForgotPassword />
+            </Route>
             <Route exact path = '/registration' >
                 <Registration setUser ={setUser}/>
             </Route>
@@ -52,7 +55,6 @@ return(
           </Switch>
             
         </div>
-     // <Signin onSigninOut={setIsSignedIn} setUser ={setUser}/>
       )
       : (
         <div>  

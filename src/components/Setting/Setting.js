@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Link, useHistory,withRouter  } from 'react-router-dom';
+import React,{useState,useEffect} from 'react';
+import {useHistory,withRouter  } from 'react-router-dom';
 import './Setting.css'
 
 const Setting =({user})=>{

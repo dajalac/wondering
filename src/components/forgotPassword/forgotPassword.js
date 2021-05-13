@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import './ForgotPassword.css'
 
 const ForgotPassword = ()=>{
@@ -12,8 +12,8 @@ const ForgotPassword = ()=>{
     let history = useHistory();
 
     const onEmailChange =((event)=>{
-          setEmail(event.target.value);
-    })
+        setEmail(event.target.value);
+   })
 
     const goSignin =(()=>{
         history.push('/')
@@ -25,6 +25,7 @@ const ForgotPassword = ()=>{
     })
 
     const forgotBtn = (()=>{
+        console.log('email',email)
         setErrorMsg(false)
         setServerResponse(false)
         fetch('http://localhost:3000/forgotPassword', {
@@ -36,6 +37,7 @@ const ForgotPassword = ()=>{
         })
         .then(response => response.json())
         .then(serverMessage =>{
+            console.log(serverResponse)
             if(serverMessage){
              setServerResponse(true)
              setErrorMsg(false)
@@ -49,10 +51,10 @@ const ForgotPassword = ()=>{
     })
 
     return(
-        <article className=" bg  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
+        <div className=" bg  br3 ba b--black-10 mv4 w-100 w-50-m  mw6 shadow-5 center">
         <div className=" pa4">
             <label className=''> Email address </label>
-            <input className='' type='text' onClick={onEmailChange}></input>
+            <input className='' type='text' onChange={onEmailChange}></input>
             <button className=' grow link  dib white bg-green' onClick={forgotBtn}>reset</button>
          {errorMsg && (
            <div>
@@ -62,7 +64,7 @@ const ForgotPassword = ()=>{
          )}
          {serverResponse && (
            <div>
-               <p className="pForm">A password reset email was sent to your email address! </p>
+               <p className="pForm">A password reset link was sent to your email address! </p>
            </div>
          )}
         
@@ -71,7 +73,7 @@ const ForgotPassword = ()=>{
            className="pForm f6 link dim black db pointer gray">Cancel</p>
         </div>
         </div>
-     </article>
+     </div>
     )
 }
 

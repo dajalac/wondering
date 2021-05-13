@@ -1,18 +1,10 @@
 
-import React, { Component } from 'react';
-import {useState, useEffect} from 'react';
+import React from 'react';
 import './App.css';
-import Clarifai from 'clarifai';
 import Greeting from './components/Greeting/Greeting';
 import Rank from './components/Rank/Rank'
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkFrom'
 import PredictionRestults from './components/PredictionResults/PredictionResults';
-
-const app = new Clarifai.App({
-  apiKey: process.env.REACT_APP_CLARIFAI_KEY
-
-});
-
 
 const initialState = {
   input: '',
@@ -35,8 +27,7 @@ class Home extends React.Component {
       this.state.boundingBoxArray.push(data.outputs[0].data.regions[i].region_info.bounding_box)
 
     }
-    console.log('length ',this.state.boundingBoxArray.length)
-
+ 
     //DOM manipulation
     const image = document.getElementById('inputImage');
     const width = Number(image.width);
