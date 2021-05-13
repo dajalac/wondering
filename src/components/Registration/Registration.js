@@ -9,6 +9,7 @@ const Registration = ({ setUser }) => {
     const [errorPassword, setErrorPassword] = useState(false);
     const [errorName, setErrorName] =useState(false);
     const[errorEmail, setErrorEmail] = useState(false);
+    const [emailAlreadyExists , setEmailAlreadyExists ] = useState(false);
 
     let history = useHistory();
 
@@ -21,7 +22,8 @@ const Registration = ({ setUser }) => {
    });
 
    const onNameChange = ((event)=>{
-       setName(event.target.value);
+        setName(event.target.value);
+
    });
 
     const goSignin = (() => {
@@ -29,11 +31,12 @@ const Registration = ({ setUser }) => {
     });
 
     const onSubmitRegistration = (() => {
-        /*
+        
         setErrorEmail(false);
         setErrorPassword(false);
-        setErrorName(false);*/
-
+        setErrorName(false);
+        setEmailAlreadyExists (false);
+    
         fetch('http://localhost:3000/register', {
             method: 'post',
             headers: { 'content-Type': 'application/json' },
@@ -49,28 +52,20 @@ const Registration = ({ setUser }) => {
                     loadUser(res );
                     history.push("/home");
                 }else{
-                    console.log(res.errors.length)
-                    switch(res.errors.length){
-                        case 1:
-                          setErrorEmail(true);
-                          setErrorPassword(false);
-                           setErrorName(false);
-                           console.log('case 1')
-                           break;
-                        case  2:
-                            setErrorEmail(true);
-                            setErrorPassword(true);
-                            setErrorName(false);
-                            console.log('case 2')
-                            break;
-                        case 3:
-                            setErrorEmail(true);
-                            setErrorPassword(true);
-                            setErrorName(true);
-                            console.log('case 3')
-                            break;
-
+                for(let i =0; i < res.errors.length; i++)   {
+                    console.log(res.errors[i].param)
+                    if(res.errors[i].param ==='name'){
+                        
+                        setErrorName(true);
+                    }else if (res.errors[i].param ==='email'){
+                        setErrorEmail(true);
+                       
+                    }else if (res.errors[i].param ==='password'){
+                        setErrorPassword(true);
+                    }else{
+                        setEmailAlreadyExists (true);
                     }
+                } 
                 }
             })
     });
@@ -109,6 +104,7 @@ const Registration = ({ setUser }) => {
                                 id="email-address"
                                 onChange={onEmailChange} />
                             {errorEmail && <p className='f7'>Email invalid</p>}
+                            {emailAlreadyExists && <p className='f7'>There is already an account with this email</p>}
                         </div>
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
