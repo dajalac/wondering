@@ -69,7 +69,7 @@ return(
             </Route>
             <Route exact path = "/setting">
                 <Navigation/>
-                <Setting/>
+                <Setting user={user}/>
             </Route>
             <Route exact path = "/forgotPassword">
               <ForgotPassword />

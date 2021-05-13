@@ -16,7 +16,7 @@ const ForgotPassword = ()=>{
     })
 
     const goSignin =(()=>{
-        history.push('/signin')
+        history.push('/')
 
     })
     
