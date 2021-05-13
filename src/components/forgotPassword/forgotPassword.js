@@ -25,7 +25,6 @@ const ForgotPassword = ()=>{
     })
 
     const forgotBtn = (()=>{
-        console.log('email',email)
         setErrorMsg(false)
         setServerResponse(false)
         fetch('https://enigmatic-beyond-79003.herokuapp.com/forgotPassword', {
@@ -37,7 +36,6 @@ const ForgotPassword = ()=>{
         })
         .then(response => response.json())
         .then(serverMessage =>{
-            console.log(serverResponse)
             if(serverMessage){
              setServerResponse(true)
              setErrorMsg(false)
