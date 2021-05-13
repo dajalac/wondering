@@ -6,17 +6,18 @@ const Setting =({user})=>{
 
     const [name, setName] = useState('');
     const[updateNameErr, setUpdateNameErr] = useState(false);
+    const[deleteError, setDeteError] = useState(false);
 
     
     let history = useHistory();
 
     const onNameChange = ((event)=>{
          setName(event.target.value)
-    })
+    });
 
     const onResetPassword =(()=>{
         history.push('/forgotPassword')
-    })
+    });
 
    const onEditName =(()=>{
     fetch('http://localhost:3000/updateName', {
@@ -37,10 +38,28 @@ const Setting =({user})=>{
       }
   })
 
-   })
+   });
 
    const onDeleteUser =(()=>{
+        if(window.confirm('Are you sure you want to delete account?')){
+        fetch('http://localhost:3000/deleteUser', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          id: user.id
+        })
+      })
+  .then (response => response.json())
+  .then(response=>{
+      if(response.message === 'user deleted'){
+          history.push('/')
+      }
+      else{
+          setDeteError(true)
+      }
 
+  })
+    }
    })
 
 
@@ -58,6 +77,7 @@ const Setting =({user})=>{
              
               <lable className='margingTop labelForm'>Delete account</lable>
               <button className='btn margingTop  grow'onClick={onDeleteUser}>Delete</button>
+              {deleteError && <p>Unable to delete user. Try sin in again</p>}
         
         </div>   
        </div>
