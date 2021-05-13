@@ -6,6 +6,9 @@ const Registration = ({ setUser }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [errorPassword, setErrorPassword] = useState(false);
+    const [errorName, setErrorName] =useState(false);
+    const[errorEmail, setErrorEmail] = useState(false);
 
     let history = useHistory();
 
@@ -22,10 +25,15 @@ const Registration = ({ setUser }) => {
    })
 
     const goSignin = (() => {
-        history.push('/signin')
+        history.push('/')
     })
 
     const onSubmitRegistration = (() => {
+        /*
+        setErrorEmail(false);
+        setErrorPassword(false);
+        setErrorName(false);*/
+
         fetch('http://localhost:3000/register', {
             method: 'post',
             headers: { 'content-Type': 'application/json' },
@@ -36,10 +44,33 @@ const Registration = ({ setUser }) => {
             })
         })
             .then(response => response.json())
-            .then(user => {
-                if (user.id) {
-                    loadUser(user);
+            .then(res => {
+                if (res .id) {
+                    loadUser(res );
                     history.push("/home");
+                }else{
+                    console.log(res.errors.length)
+                    switch(res.errors.length){
+                        case 1:
+                          setErrorEmail(true);
+                          setErrorPassword(false);
+                           setErrorName(false);
+                           console.log('case 1')
+                           break;
+                        case  2:
+                            setErrorEmail(true);
+                            setErrorPassword(true);
+                            setErrorName(false);
+                            console.log('case 2')
+                            break;
+                        case 3:
+                            setErrorEmail(true);
+                            setErrorPassword(true);
+                            setErrorName(true);
+                            console.log('case 3')
+                            break;
+
+                    }
                 }
             })
     })
@@ -68,6 +99,7 @@ const Registration = ({ setUser }) => {
                                 name="name"
                                 id="name"
                                 onChange={onNameChange} />
+                            {errorName && <p className='f7'>Name must contain just letters</p>}
                         </div>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
@@ -76,6 +108,7 @@ const Registration = ({ setUser }) => {
                                 name="email-address"
                                 id="email-address"
                                 onChange={onEmailChange} />
+                            {errorEmail && <p className='f7'>Email invalid</p>}
                         </div>
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
@@ -84,6 +117,7 @@ const Registration = ({ setUser }) => {
                                 name="password"
                                 id="password"
                                 onChange={onPasswordChange} />
+                            {errorPassword && <p className='f7'>Password must contain just number and letters</p>}
                         </div>
                     </fieldset>
                     <div className="">

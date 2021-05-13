@@ -75,10 +75,14 @@ const ResetPassword = (props)=>{
                 case 'passwords do not match':
                     setUpdateError(true);
                     setErrorMsg('Password do not match, try again!')
-                //[break]
+                    break;
                 case 'password updated with sucess':
                     setUpdated(true)
                     setError(false)
+                    break;
+                default:
+                setUpdateError(true);
+                setErrorMsg('Password can just be number and letters')
                 
             }
         })

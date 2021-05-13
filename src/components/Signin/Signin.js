@@ -7,6 +7,7 @@ const Signin = ({onSigninOut, setUser})=>{
      
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(false);
     
     let history = useHistory();
 
@@ -45,6 +46,8 @@ const Signin = ({onSigninOut, setUser})=>{
                 loadUser(user);
                 onSigninOut(true);
                 history.replace("/home");
+            }else{
+                setError(true)
             }
         })
      })
@@ -60,9 +63,7 @@ const Signin = ({onSigninOut, setUser})=>{
          })
      })
 
-    
-
-     
+ 
     return (
           <article className="background br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
               <main className="pa4 black-80">
@@ -85,6 +86,7 @@ const Signin = ({onSigninOut, setUser})=>{
                               id="password" 
                               onChange = {onPasswordChange}/>
                           </div>
+                          {error && <p className="f7">Wrong credentials</p>}
                       </fieldset>
                       <div className="">
                           <input 
