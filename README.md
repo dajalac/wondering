@@ -5,6 +5,6 @@ A live version can be found [here](https://dajalac.github.io/wondering)
 ## Tools used:
 - Java script
 - React.js
-- Clarify API
+- Clarifi API
 - Tachyons
 
